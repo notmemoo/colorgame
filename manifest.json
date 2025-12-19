@@ -1,0 +1,18 @@
+{
+  "name": "Color Memory Game",
+  "short_name": "Color Memory",
+  "description": "Test your memory with this addictive color sequence game!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e27",
+  "theme_color": "#667eea",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23667eea' width='512' height='512'/><circle fill='%23ff6b6b' cx='128' cy='128' r='80'/><circle fill='%234ecdc4' cx='384' cy='128' r='80'/><circle fill='%2395e1d3' cx='128' cy='384' r='80'/><circle fill='%23f9d423' cx='384' cy='384' r='80'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

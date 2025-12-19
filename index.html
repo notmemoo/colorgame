@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Color Memory Game - Test your memory with this addictive color sequence game. Simple, fun, and challenging!">
+  <meta name="description"
+    content="Color Memory Game - Test your memory with this addictive color sequence game. Simple, fun, and challenging!">
   <meta name="keywords" content="memory game, color game, brain training, puzzle game, time killer">
   <meta name="author" content="Color Memory Game">
+  <meta name="theme-color" content="#667eea">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Color Memory Game - Test Your Memory!</title>
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 </head>
+
 <body>
   <div class="container">
     <!-- Header -->
     <header class="header">
       <h1>Color Memory</h1>
       <p class="subtitle">Watch, Remember, Repeat!</p>
+      <button class="sound-toggle" id="sound-toggle" aria-label="Toggle sound">
+        <span class="sound-icon">🔊</span>
+      </button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Change theme">
+        <span class="theme-icon">🎨</span>
+      </button>
     </header>
 
     <!-- Score Display -->
@@ -27,6 +44,23 @@
         <div class="score-label">Best</div>
         <div class="score-value" id="high-score">0</div>
       </div>
+    </div>
+
+    <!-- Combo Display -->
+    <div class="combo-display" id="combo-display">
+      <div class="combo-text">
+        <span class="combo-label">Streak</span>
+        <span class="combo-value" id="combo-value">0</span>
+        <span class="combo-fire">🔥</span>
+      </div>
+    </div>
+
+    <!-- Difficulty Selector -->
+    <div class="difficulty-selector">
+      <button class="difficulty-btn active" data-difficulty="easy">Easy</button>
+      <button class="difficulty-btn" data-difficulty="normal">Normal</button>
+      <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+      <button class="difficulty-btn" data-difficulty="insane">Insane</button>
     </div>
 
     <!-- Game Board -->
@@ -42,6 +76,12 @@
       <button class="btn btn-primary" id="start-btn">
         <span>Start Game</span>
       </button>
+      <button class="btn btn-secondary" id="leaderboard-btn">
+        <span>🏆 View Leaderboard</span>
+      </button>
+      <button class="btn btn-daily" id="daily-challenge-btn">
+        <span>📅 Daily Challenge</span>
+      </button>
       <div class="game-status" id="game-status">Press Start to Begin</div>
     </div>
   </div>
@@ -49,7 +89,10 @@
   <!-- Game Over Modal -->
   <div class="modal" id="game-over-modal">
     <div class="modal-content">
-      <h2>Game Over!</h2>
+      <div class="modal-header">
+        <h2>Game Over!</h2>
+        <button class="close-btn" id="close-game-over">&times;</button>
+      </div>
       <p>Your Score</p>
       <div class="final-score" id="final-score">0</div>
       <button class="btn btn-primary" id="play-again-btn">
@@ -58,6 +101,67 @@
     </div>
   </div>
 
+  <!-- Leaderboard Modal -->
+  <div class="modal" id="leaderboard-modal">
+    <div class="modal-content leaderboard-content">
+      <div class="modal-header">
+        <h2>🏆 Global Leaderboard</h2>
+        <button class="close-btn" id="close-leaderboard">&times;</button>
+      </div>
+      <div class="leaderboard-categories">
+        <button class="category-btn active" data-category="easy">Easy</button>
+        <button class="category-btn" data-category="normal">Normal</button>
+        <button class="category-btn" data-category="hard">Hard</button>
+        <button class="category-btn" data-category="insane">Insane</button>
+        <button class="category-btn" data-category="daily">Daily</button>
+      </div>
+      <div class="leaderboard-list" id="leaderboard-list">
+        <div class="loading">Loading scores...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Name Input Modal -->
+  <div class="modal" id="name-modal">
+    <div class="modal-content name-input-content">
+      <h2>🎉 New High Score!</h2>
+      <p>Enter your name for the leaderboard:</p>
+      <input type="text" id="player-name-input" maxlength="20" placeholder="Your Name">
+      <button class="btn btn-primary" id="submit-name-btn">
+        <span>Submit Score</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Theme Selector Modal -->
+  <div class="modal" id="theme-modal">
+    <div class="modal-content theme-selector-content">
+      <div class="modal-header">
+        <h2>🎨 Choose Theme</h2>
+        <button class="close-btn" id="close-theme">&times;</button>
+      </div>
+      <div class="theme-options">
+        <button class="theme-option active" data-theme="dark">
+          <div class="theme-preview dark-preview"></div>
+          <span>Dark</span>
+        </button>
+        <button class="theme-option" data-theme="light">
+          <div class="theme-preview light-preview"></div>
+          <span>Light</span>
+        </button>
+        <button class="theme-option" data-theme="neon">
+          <div class="theme-preview neon-preview"></div>
+          <span>Neon</span>
+        </button>
+        <button class="theme-option" data-theme="pastel">
+          <div class="theme-preview pastel-preview"></div>
+          <span>Pastel</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
+
 </html>
