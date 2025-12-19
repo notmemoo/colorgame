@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Color Memory Game - Test your memory with this addictive color sequence game. Simple, fun, and challenging!">
+  <meta name="keywords" content="memory game, color game, brain training, puzzle game, time killer">
+  <meta name="author" content="Color Memory Game">
+  <title>Color Memory Game - Test Your Memory!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>Color Memory</h1>
+      <p class="subtitle">Watch, Remember, Repeat!</p>
+    </header>
+
+    <!-- Score Display -->
+    <div class="score-container">
+      <div class="score-box">
+        <div class="score-label">Score</div>
+        <div class="score-value" id="current-score">0</div>
+      </div>
+      <div class="score-box">
+        <div class="score-label">Best</div>
+        <div class="score-value" id="high-score">0</div>
+      </div>
+    </div>
+
+    <!-- Game Board -->
+    <div class="game-board">
+      <div class="color-pad" data-color="red" id="pad-red"></div>
+      <div class="color-pad" data-color="blue" id="pad-blue"></div>
+      <div class="color-pad" data-color="green" id="pad-green"></div>
+      <div class="color-pad" data-color="yellow" id="pad-yellow"></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="btn btn-primary" id="start-btn">
+        <span>Start Game</span>
+      </button>
+      <div class="game-status" id="game-status">Press Start to Begin</div>
+    </div>
+  </div>
+
+  <!-- Game Over Modal -->
+  <div class="modal" id="game-over-modal">
+    <div class="modal-content">
+      <h2>Game Over!</h2>
+      <p>Your Score</p>
+      <div class="final-score" id="final-score">0</div>
+      <button class="btn btn-primary" id="play-again-btn">
+        <span>Play Again</span>
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
